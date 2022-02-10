@@ -1,13 +1,12 @@
 import React from 'react';
-import InputForm from '../../components/InputForm';
 
 import { Container } from './styled'
 
 
-export default function Login() {
+export default function Home() {
   return (
     <Container>
-      <InputForm />
+      <p>Home</p>
     </Container>
   );
 }
