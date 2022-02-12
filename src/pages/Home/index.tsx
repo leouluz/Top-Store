@@ -1,18 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../../components/ProductCard';
 
-import { Container } from './styles'
+import { Container, ProductDiv } from './styles'
 
+interface Cart {
+  id: string;
+  title: string;
+  image: string;
+  price: string;
+}
 
 export default function Home() {
 
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState<Cart>({
+    id: '',
+    title: '',
+    image: '',
+    price: '',
+  })
+  const [totalItens, setTotalItens] = useState('')
 
-  let array = new Array();
+  const userName = localStorage.getItem("user")
+
+  let array : Array<Cart> = []
+
+  useEffect(() =>{
+    setTotalItens(String(array.length));
+  },[array])
 
   useEffect(() => {
     array.push(cart)
-    console.log(array);
+    console.log(array)
   }, [cart])
 
   const DATA =[
@@ -80,12 +98,21 @@ export default function Home() {
 
   return (
     <Container>
+      <header>
+        <div>
+          <h1>Bem vindo a TopStore {userName}</h1>
+          <h1>total de itens em seu carrinho: {totalItens}</h1>
+        </div>
+      </header>
+      <ProductDiv>
       { DATA.length > 0 &&       
           DATA.map((prod) =>(
             <ProductCard id={prod.id} title={prod.productName} image={prod.image} price={prod.price} setCart={setCart}/>
             )
           )  
         }
+      </ProductDiv>
+
     </Container>
   );
 }
