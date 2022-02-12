@@ -1,13 +1,13 @@
 import React from 'react';
-import InputForm from '../../components/InputForm';
+import Form from '../../components/Form';
 
-import { Container } from './styled'
+import { Container } from './styles'
 
 
 export default function Login() {
   return (
     <Container>
-      <InputForm />
+      <Form />
     </Container>
   );
 }
